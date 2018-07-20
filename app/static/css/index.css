@@ -1,0 +1,19 @@
+.user { background-color: #F8F9FA; }
+.sair { color: #C82333; }
+.user-img { text-align: center; }
+.criar-partida { text-align: center; margin-top: 20px;}
+.link { color: #212529 }
+.partidas { background-color: #F8F9FA; }
+.titulo { text-align: center; }
+.lista-partidas h3 { text-align: center; }
+.line {background-color: #C82333; height: 5px;}
+.line-bottom {background-color: #C82333; height: 5px; margin-top: 20px;}
+.copy { margin-top: 20px; text-align: center; }
+@keyframes hide {
+  from { opacity: 1 }
+  to   { opacity: 0 }
+}
+
+.sucess {
+  animation: hide 1s 2s forwards
+}

@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="/static/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+
+  <title>Jogo da Velha</title>
+</head>
+<body>
+<div class="container">
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar navbar-expand-lg navbar-light bg-light">
+			  <a class="navbar-brand" href="/"><img src="/static/img/logo.png" width="75" height="75"></a>
+			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+			    <span class="navbar-toggler-icon"></span>
+			  </button>
+
+			  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+			  </div>
+			  {% if username %}
+			  <div class="login-area navbar-nav">
+			  	<a href="" class="nav-link"><i class="fas fa-user"></i> Bem-vindo(a), {{username}}</a>
+			  	<a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
+			  </div>
+			  {% else %}
+			  <div class="login-area navbar-nav">
+			  	<a href="/login" class="nav-link"><i class="fas fa-user"></i> Login</a>
+			  	<a href="/cadastro" class="nav-link"><i class="fas fa-user-plus"></i> Cadastro</a>
+			  </div>
+			  {% endif %}
+			</nav>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+			{% if username %}
+			<div class="alert alert-success sucess" role="alert">
+  				Login realizado com sucesso!
+			</div>
+			{% endif %}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6">
+			<div class="user">
+				{% if username %}
+				<div class="user-img">
+					<img src="/static/img/user.png" height="100">
+					<h3><a href="/perfil" class="link">{{username}}</a></h3>
+				</div>
+				<div class="row">
+					<div class="col-md-6">
+						<h5>Vitórias: 158</h5>
+					</div>
+					<div class="col-md-6">
+						<h5>Derrotas: 0</h5>
+					</div>
+				</div>
+				<div class="criar-partida">
+					<a href="/criar-partida"><button type="button" class="btn btn-danger">Criar Partida</button></a>
+				</div>
+				{% else %}
+				<div class="user-img">
+					<img src="/static/img/user.png" height="100">
+				</div>
+				<div class="criar-partida">
+					<a href="/login"><button type="button" class="btn btn-danger">Fazer Login</button></a>
+					<a href="/cadastro"><button type="button" class="btn btn-danger">Cadastrar-se</button></a>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+		<div class="col-md-6">
+			<div class="partidas">
+				<div class="titulo">
+					<h3>Partidas Disponíveis</h3>
+					<div class="line"></div>
+				</div>
+				<div class="lista-partidas">
+					{% if partidas %}
+						<ul class="list-group">
+						  <li class="list-group-item"><a href="">Cras justo odio</a></li>
+						  <li class="list-group-item"><a href="">Cras justo odio</a></li>
+						  <li class="list-group-item"><a href="">Cras justo odio</a></li>
+						  <li class="list-group-item"><a href="">Cras justo odio</a></li>
+						  <li class="list-group-item"><a href="">Cras justo odio</a></li>
+						</ul>
+					{% else %}
+						<h3>Nenhuma partida disponível</h3>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="line-bottom"></div>
+<div class="container">
+	<div class="col-md-12">
+		<div class="copy">
+			<p>&copy; HilkYves 2018</p>
+		</div>
+	</div>
+</div>
+  
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+</body>
+</html>
