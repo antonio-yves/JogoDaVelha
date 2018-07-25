@@ -2,35 +2,80 @@
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="/static/css/jogo.css"/>   
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="script.js"></script>
     <link rel="stylesheet" href="/static/css/bootstrap.css" rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <title>Partida - Jogo da Velha</title>
 </head>
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-3"></div>
-            <div class="col-md-6">
-                <div id="jogo">
-                    <div class="linha">
-                        <div class="casa" id="casa1"></div>
-                        <div class="casa" id="casa2"></div>
-                        <div class="casa3" id="casa3"></div>
+            <div class="col-md-3">          
+                <div class="user">
+                <div class="user-img">
+                    <img src="/static/img/user.png" height="100">
+                    <h3><a href="/partidas" class="link">{{jogador1[0][1]}}</a></h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Vitórias: {% if jogador1[0][4] == None %}0{%else%}{{jogador1[0][4]}}{%endif%}</h5>
                     </div>
-                    <div class="linha">
-                        <div class="casa" id="casa4"></div>
-                        <div class="casa" id="casa5"></div>
-                        <div class="casa6" id="casa6"></div>
-                    </div>
-                    <div class="linha1">
-                        <div class="casa" id="casa7"></div>
-                        <div class="casa" id="casa8"></div>
-                        <div class="casa9" id="casa9"></div>
+                    <div class="col-md-6">
+                        <h5>Derrotas: {% if jogador1[0][5] == None %}0{%else%}{{jogador1[0][5]}}{%endif%}</h5>
                     </div>
                 </div>
-                <div id="resultado"></div>
+            </div></div>
+            <div class="col-md-6">
+                <form method="POST">
+                <div style="width: 480px; float: left;">
+                    {% for x in partida[0][4] %}
+                    {% if loop.index0 == 0 or loop.index0 == 1 or loop.index0 == 3 or loop.index0 == 4 %}
+                    <div style="width: 160px; height: 160px; float: left; border-right: solid 1px #000; border-bottom:solid 1px #000;">
+                    {% elif loop.index0 == 6 or loop.index0 == 7 %}
+                    <div style="width: 160px; height: 160px; float: left; border-right: solid 1px #000;">
+                    {% elif loop.index0 == 8 %}
+                    <div style="width: 160px; height: 160px; float: left;">
+                    {% else %}
+                    <div style="width: 160px; height: 160px; float: left; border-bottom:solid 1px #000;">
+                    {% endif %}
+                        {% if x == 1 %}
+                        <img src="/static/img/X.jpg" height="150" width="150">
+                        {% elif x == 2 %}
+                        <img src="/static/img/O.jpg" height="150" width="150">
+                        {% else %}
+                        <input type="radio" name="resposta" id="resposta[{{loop.index0}}]" value="{{loop.index0}}" >
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+                {% if partida[0][5] == jogador1[0][0] %}
+                <input type="submit" name="enviar" value="Enviar">
+                {% else %}
+                <p>Aguarde a jogada do seu oponente</p>
+                {% endif %}
+                </form>
             </div>
-            <div class="col-md-3"></div>
+            <div class="col-md-3">
+            <div class="user">
+                {% if jogador2[0][1] != jogador1[0][1] %}
+                <div class="user-img">
+                    <img src="/static/img/user.png" height="100">
+                    <h3><a href="/partidas" class="link">{{jogador2[0][1]}}</a></h3>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Vitórias: {% if jogador2[0][4] == None %}0{%else%}{{jogador2[0][4]}}{%endif%}</h5>
+                    </div>
+                    <div class="col-md-6">
+                        <h5>Derrotas: {% if jogador2[0][5] == None %}0{%else%}{{jogador2[0][5]}}{%endif%}</h5>
+                    </div>
+                </div>
+                {% else %}
+                <div class="criar-partida aguardando">
+                    <h3>Aguardando oponente</h3>
+                </div>
+                {% endif %}
+            </div>
+            </div>
         </div>
     </div>
 </body>

@@ -26,7 +26,7 @@
 			  </div>
 			  {% if username %}
 			  <div class="login-area navbar-nav">
-			  	<a href="" class="nav-link"><i class="fas fa-user"></i> Bem-vindo(a), {{username[1]}}</a>
+			  	<a href="" class="nav-link"><i class="fas fa-user"></i> Bem-vindo(a), {{username}}</a>
 			  	<a href="/logout" class="nav-link"><i class="fas fa-sign-out-alt"></i> Sair</a>
 			  </div>
 			  {% else %}
@@ -38,52 +38,23 @@
 			</nav>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-md-12">
-			{% if username %}
-			<div class="alert alert-success sucess" role="alert">
-  				Login realizado com sucesso!
-			</div>
-			{% endif %}
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-md-6">
-			<div class="user">
-				{% if username %}
-				<div class="user-img">
-					<img src="/static/img/user.png" height="100">
-					<h3><a href="/partidas" class="link">{{username[1]}}</a></h3>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="tabela">
+				<div class="titulo-jogador">
+					<h1>Partidas do jogador {{username}}</h1>
 				</div>
-				<div class="row">
-					<div class="col-md-6">
-						<h5>Vitórias: {{username[4]}}</h5>
-					</div>
-					<div class="col-md-6">
-						<h5>Derrotas: {{username[4]}}</h5>
-					</div>
-				</div>
-				<div class="criar-partida">
-					<a href="/criar-partida"><button type="button" class="btn btn-danger">Criar Partida</button></a>
-				</div>
-				{% else %}
-				<div class="user-img">
-					<img src="/static/img/user.png" height="100">
-				</div>
-				<div class="criar-partida">
-					<a href="/login"><button type="button" class="btn btn-danger">Fazer Login</button></a>
-					<a href="/cadastro"><button type="button" class="btn btn-danger">Cadastrar-se</button></a>
-				</div>
-				{% endif %}
-			</div>
-		</div>
-		<div class="col-md-6">
-			<div class="partidas">
-				<div class="titulo">
-					<h3>Partidas Disponíveis</h3>
-					<div class="line"></div>
-				</div>
-				<div class="lista-partidas">
+				<ul class="nav nav-tabs">
+				  <li class="nav-item">
+				    <a class="nav-link active" href="#andamento" role="tab" data-toggle="tab">Em andamento</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link" href="#finalizadas" role="tab" data-toggle="tab">Finalizadas</a>
+				  </li>
+				</ul>
+				<div class="tab-content">
+					<div role="tabpanel" class="tab-pane active" id="andamento">
 						<ul class="list-group">
 						{% if partidas|length > 0 %}
 						{% for x in partidas %}
@@ -92,24 +63,28 @@
 						{%endfor%}
 						{% else %}
 						<div class="titulo-jogador">
-						<h3>Nenhuma partida disponível</h3>
+						<h3>Nenhuma partida em andamento</h3>
 						</div>
 						{% endif %}
+					</div>
+					<div role="tabpanel" class="tab-pane" id="finalizadas">
+						<ul class="list-group">
+						{% if partidas_fina|length > 0 %}
+						{% for x in partidas_fina %}
+						  <li class="list-group-item">Partida Nº {{ x[0] }}</li>
+						</ul>
+						{%endfor%}
+						{% else %}
+						<div class="titulo-jogador">
+						<h3>Nenhuma partida finalizada</h3>
+						</div>
+						{% endif %}
+					</div>
+				</div>
 				</div>
 			</div>
 		</div>
 	</div>
-</div>
-
-<div class="line-bottom"></div>
-<div class="container">
-	<div class="col-md-12">
-		<div class="copy">
-			<p>&copy; HilkYves 2018</p>
-		</div>
-	</div>
-</div>
-  
 
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->

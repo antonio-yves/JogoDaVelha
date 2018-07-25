@@ -17,3 +17,7 @@
 .sucess {
   animation: hide 1s 2s forwards
 }
+
+.tabela { margin-top: 20px; }
+.titulo-jogador { text-align: center; }
+.titulo-jogador h3 { margin-top: 20px; }
